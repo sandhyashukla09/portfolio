@@ -1,0 +1,46 @@
+.techstack {
+  padding: 80px 5vw;
+  text-align: center;
+}
+
+.techstack h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 48px;
+  color: #fff;
+}
+
+.tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tech-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 1.5px solid;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  background: rgba(255, 255, 255, 0.04);
+  transition: background 0.2s, transform 0.2s;
+  cursor: default;
+}
+
+.tech-pill:hover {
+  background: rgba(255, 255, 255, 0.09);
+  transform: translateY(-2px);
+}
+
+.tech-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
