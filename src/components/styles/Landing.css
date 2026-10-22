@@ -29,17 +29,17 @@
   z-index: 0;
 }
 .hero-orb-1 {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, rgba(194, 164, 255, 0.25), transparent 70%);
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.12), transparent 70%);
   top: -60px;
   left: -120px;
   animation: orbFloat 8s ease-in-out infinite;
 }
 .hero-orb-2 {
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(251, 141, 255, 0.18), transparent 70%);
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.08), transparent 70%);
   bottom: 0;
   right: -80px;
   animation: orbFloat 10s ease-in-out infinite reverse;
@@ -62,16 +62,16 @@
   font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #888;
+  color: #64748b;
   margin-bottom: 24px;
-  font-weight: 400;
+  font-weight: 500;
 }
 .hero-dot {
   width: 8px;
   height: 8px;
-  background: #4ade80;
+  background: #16a34a;
   border-radius: 50%;
-  box-shadow: 0 0 8px #4ade80;
+  box-shadow: 0 0 8px #16a34a;
   animation: pulse 2s ease-in-out infinite;
 }
 @keyframes pulse {
@@ -83,7 +83,7 @@
   margin: 0 0 4px 0;
   color: var(--accentColor);
   font-size: clamp(14px, 2vw, 22px);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
@@ -91,22 +91,23 @@
 .hero-name {
   margin: 0 0 16px 0;
   font-size: clamp(52px, 10vw, 110px);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 0.95;
   letter-spacing: -2px;
   font-family: "Geist", sans-serif;
+  color: #0f172a;
 }
 .hero-name span {
   color: var(--accentColor);
-  -webkit-text-stroke: 1px var(--accentColor);
+  -webkit-text-stroke: 1.5px var(--accentColor);
   -webkit-text-fill-color: transparent;
 }
 
 .hero-title {
   margin: 0 0 20px 0;
   font-size: clamp(18px, 3.5vw, 36px);
-  font-weight: 400;
-  color: #e0d4f7;
+  font-weight: 500;
+  color: #1e293b;
   letter-spacing: 0.5px;
   line-height: 1.3;
 }
@@ -114,10 +115,10 @@
 .hero-subtitle {
   margin: 0 0 40px 0;
   font-size: clamp(14px, 1.6vw, 17px);
-  color: #888;
-  font-weight: 300;
+  color: #475569;
+  font-weight: 400;
   line-height: 1.7;
-  max-width: 520px;
+  max-width: 540px;
 }
 .hero-br { display: none; }
 
@@ -135,36 +136,39 @@
   gap: 8px;
   padding: 14px 32px;
   background: var(--accentColor);
-  color: #0b080c;
+  color: #ffffff;
   border-radius: 999px;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-decoration: none;
   transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
 }
 .hero-cta-primary:hover {
-  background: #d9beff;
-  color: #0b080c;
+  background: #6d28d9;
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(194, 164, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35);
 }
 
 .hero-cta-secondary {
   display: inline-flex;
   align-items: center;
   padding: 14px 32px;
-  border: 1.5px solid rgba(194, 164, 255, 0.4);
-  color: var(--accentColor);
+  border: 1.5px solid #cbd5e1;
+  color: #1e293b;
   border-radius: 999px;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
+  background: #ffffff;
   transition: all 0.25s ease;
 }
 .hero-cta-secondary:hover {
-  background: rgba(194, 164, 255, 0.08);
+  background: #f8fafc;
   border-color: var(--accentColor);
+  color: var(--accentColor);
   transform: translateY(-2px);
 }
 
@@ -176,12 +180,13 @@
 }
 .hero-tags span {
   padding: 6px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #e2e8f0;
   border-radius: 999px;
   font-size: 12px;
-  color: #666;
+  color: #475569;
+  font-weight: 500;
   letter-spacing: 0.5px;
-  background: rgba(255, 255, 255, 0.03);
+  background: #f8fafc;
 }
 
 /* Nav fade + circles from original - keep for Navbar */
@@ -192,12 +197,11 @@
   position: fixed;
   width: 300px;
   height: 300px;
-  background-color: #fb8dff;
-  box-shadow: inset -50px 40px 50px rgba(84, 0, 255, 0.6);
+  background-color: #ddd6fe;
   filter: blur(80px);
   border-radius: 50%;
   animation: loadingCircle 8s linear infinite;
-  opacity: 0.3;
+  opacity: 0.35;
 }
 @keyframes loadingCircle {
   0%   { transform: translate(-95%, -75%) rotateZ(0deg); }
@@ -212,11 +216,10 @@
   display: none;
   width: 300px;
   height: 300px;
-  background-color: #fb8dff;
-  box-shadow: inset -50px 40px 50px rgba(84, 0, 255, 0.6);
+  background-color: #fce7f3;
   filter: blur(60px);
   border-radius: 50%;
-  opacity: 0.2;
+  opacity: 0.3;
   animation: loadingCircle2 8s linear infinite;
 }
 @keyframes loadingCircle2 {
@@ -227,8 +230,8 @@
   position: fixed;
   top: 0;
   width: 100%;
-  height: 130px;
-  background-image: linear-gradient(0deg, transparent, var(--backgroundColor) 70%);
+  height: 110px;
+  background-image: linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.95) 70%);
   pointer-events: none;
   z-index: 12;
   opacity: 1;

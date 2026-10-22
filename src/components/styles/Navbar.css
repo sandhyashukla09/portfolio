@@ -26,9 +26,13 @@
 .header ul li {
   margin-left: 0px;
   letter-spacing: 1px;
-  color: #ccc;
+  color: #334155;
   font-weight: 600;
   cursor: pointer;
+  transition: color 0.2s ease;
+}
+.header ul li:hover {
+  color: var(--accentColor);
 }
 .navbar-connect {
   position: absolute;
@@ -39,11 +43,16 @@
   font-size: 15px;
   letter-spacing: 1px;
   font-weight: 500;
+  color: #475569;
+}
+.navbar-connect:hover {
+  color: var(--accentColor);
 }
 .navbar-title {
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.2px;
+  color: #0f172a;
 }
 @media only screen and (min-width: 500px) {
   .header {
@@ -55,7 +64,7 @@
     font-size: 14px;
   }
   .header ul li {
-    color: #eae5ec;
+    color: #334155;
   }
   .navbar-title {
     font-size: 16px;

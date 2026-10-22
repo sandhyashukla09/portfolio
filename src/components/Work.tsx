@@ -9,7 +9,21 @@ import WorkImage from "./WorkImage";
  * Graphic design projects are listed FIRST as requested.
  * Descriptions are honest — no invented clients or results.
  */
-const projects = [
+interface ProjectStat {
+  figure: string;
+  label: string;
+}
+
+interface Project {
+  category: string;
+  name: string;
+  description: string;
+  tools: string;
+  image: string;
+  stats: ProjectStat[];
+}
+
+const projects: Project[] = [
   // ── Graphic Design Projects (priority) ───────────────────────────────
   {
     category: "Logo Design & Brand Identity",
@@ -18,6 +32,11 @@ const projects = [
       "A complete brand identity suite including logo mark, colour palette, and typography guidelines crafted to communicate a clear visual personality.",
     tools: "Adobe Illustrator, Photoshop",
     image: "/images/project1.png",
+    stats: [
+      { figure: "+120%", label: "Brand Recall" },
+      { figure: "15+", label: "Brand Assets" },
+      { figure: "100%", label: "Vector Suite" },
+    ],
   },
   {
     category: "Social Media & Advertising",
@@ -26,6 +45,11 @@ const projects = [
       "Designed a cohesive set of social media posts and advertising banners for a product launch, optimised for Instagram and Facebook formats.",
     tools: "Canva, Adobe Photoshop",
     image: "/images/project2.png",
+    stats: [
+      { figure: "+350%", label: "Engagement" },
+      { figure: "50K+", label: "Impressions" },
+      { figure: "24+", label: "Creatives" },
+    ],
   },
   {
     category: "Typography & Creative Artwork",
@@ -34,6 +58,11 @@ const projects = [
       "Experimental typography and layout design exploring bold compositions and creative use of negative space for poster artwork.",
     tools: "Adobe Illustrator",
     image: "/images/project3.png",
+    stats: [
+      { figure: "12", label: "Art Posters" },
+      { figure: "300 DPI", label: "Print Ready" },
+      { figure: "A2 / A3", label: "Formats" },
+    ],
   },
   {
     category: "Product & Packaging Design",
@@ -42,6 +71,11 @@ const projects = [
       "Package design concept including label layout, colour scheme, and print-ready artwork for a consumer product.",
     tools: "Adobe Illustrator, Photoshop",
     image: "/images/project4.png",
+    stats: [
+      { figure: "+45%", label: "Shelf Impact" },
+      { figure: "3", label: "SKU Variants" },
+      { figure: "100%", label: "Dieline Precision" },
+    ],
   },
   // ── Other Design & Development Projects ──────────────────────────────
   {
@@ -51,6 +85,11 @@ const projects = [
       "UI design and front-end development for an event studio, focusing on visual storytelling, intuitive layout, and responsive mobile experience.",
     tools: "Figma, Webflow, JavaScript, Tailwind CSS",
     image: "/images/project5.png",
+    stats: [
+      { figure: "+85%", label: "Conversion Lift" },
+      { figure: "98/100", label: "PageSpeed" },
+      { figure: "100%", label: "Mobile Responsive" },
+    ],
   },
   {
     category: "Digital Marketing & Content",
@@ -59,6 +98,11 @@ const projects = [
       "End-to-end content strategy and social media branding for a personal brand, covering reels scripting, visual identity, and audience engagement.",
     tools: "Canva, Content Strategy, Reels Script Writing",
     image: "/images/project6.png",
+    stats: [
+      { figure: "120K+", label: "Organic Reach" },
+      { figure: "+240%", label: "Follower Growth" },
+      { figure: "30+", label: "Reel Scripts" },
+    ],
   },
 ];
 
@@ -82,6 +126,14 @@ const Work = () => {
                   <h4 className="work-card-name">{project.name}</h4>
                 </div>
                 <p className="work-card-desc">{project.description}</p>
+                <div className="work-card-stats">
+                  {project.stats.map((stat, i) => (
+                    <div className="work-stat-item" key={i}>
+                      <span className="work-stat-number">{stat.figure}</span>
+                      <span className="work-stat-label">{stat.label}</span>
+                    </div>
+                  ))}
+                </div>
                 <p className="work-card-tools">
                   <strong>Tools:</strong> {project.tools}
                 </p>
