@@ -1,94 +1,227 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+/* ==========================================================================
+   SANDHYA SHUKLA — GRAPHIC DESIGN PORTFOLIO DESIGN SYSTEM & TOKENS
+   ========================================================================== */
 
 :root {
-  font-family: "Geist", sans-serif;
+  /* Typography */
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  --font-serif: "Playfair Display", Georgia, serif;
 
+  font-family: var(--font-sans);
   font-optical-sizing: auto;
   font-style: normal;
-  line-height: 1.5;
-  scroll-behavior: smooth;
+  line-height: 1.6;
   color-scheme: light;
-  color: #0f172a;
-  background-color: var(--backgroundColor);
 
-  font-synthesis: none;
+  /* Color System — Swiss Studio Palette */
+  --bg-main: #fcfcfd;
+  --bg-alt: #f6f7f9;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-dark: #0a0d14;
+  --bg-dark-surface: #121620;
+
+  --border-light: #eaedf1;
+  --border-subtle: #f1f4f8;
+  --border-strong: #cbd5e1;
+
+  --text-primary: #0a0e1a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+
+  /* Restrained Creative Accent (Swiss Vermilion / Electric Tangerine) */
+  --accentColor: #e63917;
+  --accentHover: #cc2f0f;
+  --accentSubtle: rgba(230, 57, 23, 0.08);
+  --accentGlow: rgba(230, 57, 23, 0.25);
+
+  /* Secondary Accent (Klein Cobalt Blue for contrast details) */
+  --accentSecondary: #2563eb;
+  --accentSecondarySubtle: rgba(37, 99, 235, 0.08);
+
+  /* Layout */
+  --cWidth: 92%;
+  --cMaxWidth: 1360px;
+  --headerHeight: 88px;
+
+  /* Shadows & Curves */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(10, 14, 26, 0.04);
+  --shadow-md: 0 4px 16px rgba(10, 14, 26, 0.06);
+  --shadow-lg: 0 12px 32px rgba(10, 14, 26, 0.08);
+  --shadow-hover: 0 20px 48px rgba(10, 14, 26, 0.12);
+
+  /* Transitions */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.2s var(--ease-smooth);
+  --transition-normal: 0.35s var(--ease-spring);
+  --transition-slow: 0.6s var(--ease-spring);
+
+  /* Text Rendering */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  --accentColor: #7c3aed;
-  --accentColorLight: #ede9fe;
-  --backgroundColor: #ffffff;
-  --surfaceColor: #f8fafc;
-  --borderColor: #e2e8f0;
-  --textMuted: #64748b;
-  --vh: 100vh;
-  --vh: 100svh;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Geist", sans-serif;
-  color: #0f172a;
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--headerHeight);
+}
+
 body {
-  overflow-x: hidden;
-  overflow-y: auto;
   margin: 0;
-  height: auto;
-  background-color: #ffffff;
-  color: #0f172a;
-  flex-grow: 1;
-  --cWidth: calc(100% - 30px);
-  --cMaxWidth: 1920px;
-  max-width: 100vw;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  position: relative;
+  font-size: 16px;
 }
+
+/* Fluid Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
 a {
   color: inherit;
-  text-decoration: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
+
 a:hover {
   color: var(--accentColor);
 }
-.main-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
 }
 
-.container-main {
-  width: 100%;
-  margin: auto;
-  position: relative;
-}
-.container1 {
-  width: var(--cWidth);
-  height: var(--vh);
-  margin: auto;
-  position: relative;
-}
-.split-line {
-  overflow: hidden;
-}
-.split-h2 {
-  overflow: hidden;
-  display: flex;
-  white-space: nowrap;
-  flex-wrap: nowrap;
+img {
+  max-width: 100%;
+  display: block;
 }
 
+/* Accessibility: Visible Focus Outline */
+:focus-visible {
+  outline: 2px solid var(--accentColor);
+  outline-offset: 3px;
+}
+
+/* Universal Layout Container */
 .section-container {
   width: var(--cWidth);
-  margin: auto;
   max-width: var(--cMaxWidth);
+  margin: 0 auto;
 }
 
+/* Section Header Lockup */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accentColor);
+  margin-bottom: 12px;
+}
+
+.section-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  background-color: var(--accentColor);
+}
+
+.section-title {
+  font-size: clamp(32px, 5.5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.section-title span {
+  color: var(--accentColor);
+}
+
+.section-subtitle {
+  font-size: clamp(15px, 1.8vw, 18px);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 640px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--accentColor);
+  color: #ffffff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Responsive adjustments */
 @media screen and (min-width: 768px) {
-  body {
-    --cWidth: 94%;
+  :root {
+    --cWidth: 90%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  :root {
+    --cWidth: 88%;
+  }
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

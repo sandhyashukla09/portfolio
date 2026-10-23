@@ -1,91 +1,118 @@
+import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
+import { FiFileText, FiX, FiDownload } from "react-icons/fi";
+import { MdArrowOutward } from "react-icons/md";
 import "./styles/SocialIcons.css";
-import { TbNotes } from "react-icons/tb";
-import { useEffect } from "react";
-import HoverLinks from "./HoverLinks";
 
 const SocialIcons = () => {
-  useEffect(() => {
-    const social = document.getElementById("social") as HTMLElement;
-    if (!social) return;
-
-    const cleanupFns: (() => void)[] = [];
-
-    // Only target top-level spans/containers that have an anchor link
-    social.querySelectorAll(".whatsapp-container, span").forEach((item) => {
-      const elem = item as HTMLElement;
-      const link = elem.querySelector("a") as HTMLElement | null;
-      if (!link) return;
-
-      const rect = elem.getBoundingClientRect();
-      let mouseX = rect.width / 2;
-      let mouseY = rect.height / 2;
-      let currentX = 0;
-      let currentY = 0;
-      let animId: number;
-
-      const updatePosition = () => {
-        currentX += (mouseX - currentX) * 0.1;
-        currentY += (mouseY - currentY) * 0.1;
-
-        link.style.setProperty("--siLeft", `${currentX}px`);
-        link.style.setProperty("--siTop", `${currentY}px`);
-
-        animId = requestAnimationFrame(updatePosition);
-      };
-
-      const onMouseMove = (e: MouseEvent) => {
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        if (x < 40 && x > 10 && y < 40 && y > 5) {
-          mouseX = x;
-          mouseY = y;
-        } else {
-          mouseX = rect.width / 2;
-          mouseY = rect.height / 2;
-        }
-      };
-
-      document.addEventListener("mousemove", onMouseMove);
-      animId = requestAnimationFrame(updatePosition);
-
-      cleanupFns.push(() => {
-        document.removeEventListener("mousemove", onMouseMove);
-        cancelAnimationFrame(animId);
-      });
-    });
-
-    return () => {
-      cleanupFns.forEach((fn) => fn());
-    };
-  }, []);
+  const [resumeModalOpen, setResumeModalOpen] = useState(false);
 
   return (
-    <div className="icons-section">
-      <div className="social-icons" data-cursor="icons" id="social">
-        <span className="whatsapp-container">
-          <div className="whatsapp-pulse-ring ring-1"></div>
-          <div className="whatsapp-pulse-ring ring-2"></div>
-          <div className="whatsapp-pulse-ring ring-3"></div>
-          
-          <a href="https://wa.me/919826385094" target="_blank" className="whatsapp-btn">
+    <>
+      <aside className="floating-utilities" aria-label="Quick Connect Utilities">
+        {/* Floating WhatsApp Widget */}
+        <div className="floating-whatsapp-wrap">
+          <div className="whatsapp-pulse-ring" aria-hidden="true" />
+          <a
+            href="https://wa.me/919826385094"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="floating-whatsapp-btn"
+            aria-label="Chat directly with Sandhya on WhatsApp"
+          >
             <FaWhatsapp />
           </a>
-          
-          <div className="whatsapp-chat-bubble">
-            <span className="whatsapp-online-dot"></span>
-            Let's connect!
+          <div className="whatsapp-tooltip" role="status">
+            <span className="tooltip-dot" />
+            <span>Chat with Sandhya</span>
           </div>
-        </span>
-      </div>
-      <a className="resume-button" href="#">
-        <HoverLinks text="RESUME" />
-        <span>
-          <TbNotes />
-        </span>
-      </a>
-    </div>
+        </div>
+
+        {/* Floating Resume Quick Button */}
+        <button
+          type="button"
+          className="floating-resume-btn"
+          onClick={() => setResumeModalOpen(true)}
+          aria-label="View Sandhya Shukla's Resume and Credentials"
+        >
+          <FiFileText className="resume-icon" />
+          <span className="resume-label">RESUME</span>
+        </button>
+      </aside>
+
+      {/* Resume Quick Drawer / Modal */}
+      {resumeModalOpen && (
+        <div
+          className="resume-modal-backdrop"
+          onClick={() => setResumeModalOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="resume-dialog-title"
+        >
+          <div className="resume-modal-sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="resume-modal-header">
+              <div>
+                <span className="resume-eyebrow">Creative Credentials</span>
+                <h3 id="resume-dialog-title" className="resume-title">
+                  Sandhya Shukla &bull; CV Summary
+                </h3>
+              </div>
+              <button
+                type="button"
+                className="resume-close-btn"
+                onClick={() => setResumeModalOpen(false)}
+                aria-label="Close resume dialog"
+              >
+                <FiX />
+              </button>
+            </div>
+
+            <div className="resume-modal-body">
+              <div className="resume-bio-section">
+                <h4>Graphic Designer &amp; Visual Storyteller</h4>
+                <p>
+                  Specialized in brand identity systems, product packaging, editorial typography, and high-converting marketing campaigns.
+                </p>
+              </div>
+
+              <div className="resume-section-block">
+                <h5>Core Software</h5>
+                <p>Adobe Illustrator, Adobe Photoshop, Figma, InDesign, Canva Pro, Adobe XD</p>
+              </div>
+
+              <div className="resume-section-block">
+                <h5>Specializations</h5>
+                <p>
+                  Brand Architecture &bull; Vector Logo Suites &bull; Product Packaging Dielines &bull; Typography Layouts &bull; Social Campaign Direction &bull; Print Prepress
+                </p>
+              </div>
+
+              <div className="resume-section-block">
+                <h5>Contact &amp; Commission Inquiries</h5>
+                <p>
+                  Email: <a href="mailto:shuklasandhya09@gmail.com">shuklasandhya09@gmail.com</a>
+                  <br />
+                  Phone: <a href="tel:+919826385094">+91 98263 85094</a>
+                  <br />
+                  Location: India &bull; Available for remote client collaborations worldwide
+                </p>
+              </div>
+            </div>
+
+            <div className="resume-modal-footer">
+              <a
+                href="mailto:shuklasandhya09@gmail.com?subject=Requesting%20Full%20PDF%20Resume%20-%20Sandhya%20Shukla"
+                className="resume-download-btn"
+              >
+                <FiDownload />
+                <span>Request Official PDF Resume</span>
+                <MdArrowOutward />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

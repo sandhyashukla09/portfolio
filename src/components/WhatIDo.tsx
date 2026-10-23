@@ -1,207 +1,148 @@
-import { useEffect, useRef } from "react";
+import { useState } from "react";
+import { MdArrowOutward, MdChevronRight } from "react-icons/md";
 import "./styles/WhatIDo.css";
 
-const WhatIDo = () => {
-  const containerRef = useRef<(HTMLDivElement | null)[]>([]);
-  const setRef = (el: HTMLDivElement | null, index: number) => {
-    containerRef.current[index] = el;
-  };
-  useEffect(() => {
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.classList.remove("what-noTouch");
-          container.addEventListener("click", () => handleClick(container));
-        }
-      });
-    }
-    return () => {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.removeEventListener("click", () => handleClick(container));
-        }
-      });
-    };
-  }, []);
-  return (
-    <div className="whatIDO">
-      <div className="what-box">
-        <h2 className="title">
-          W<span className="hat-h2">HAT</span>
-          <div>
-            I<span className="do-h2"> DO</span>
-          </div>
-        </h2>
-      </div>
-      <div className="what-box">
-        <div className="what-box-in">
-          <div className="what-border2">
-            <svg width="100%">
-              <line
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="100%"
-                stroke="#cbd5e1"
-                strokeWidth="2"
-                strokeDasharray="7,7"
-              />
-              <line
-                x1="100%"
-                y1="0"
-                x2="100%"
-                y2="100%"
-                stroke="#cbd5e1"
-                strokeWidth="2"
-                strokeDasharray="7,7"
-              />
-            </svg>
-          </div>
-          <div
-            className="what-content what-noTouch"
-            ref={(el) => setRef(el, 0)}
-          >
-            <div className="what-border1">
-              <svg height="100%">
-                <line
-                  x1="0"
-                  y1="0"
-                  x2="100%"
-                  y2="0"
-                  stroke="#cbd5e1"
-                  strokeWidth="2"
-                  strokeDasharray="6,6"
-                />
-                <line
-                  x1="0"
-                  y1="100%"
-                  x2="100%"
-                  y2="100%"
-                  stroke="#cbd5e1"
-                  strokeWidth="2"
-                  strokeDasharray="6,6"
-                />
-              </svg>
-            </div>
-            <div className="what-corner"></div>
+interface ServiceItem {
+  number: string;
+  category: string;
+  headline: string;
+  summary: string;
+  deliverables: string[];
+  tools: string[];
+}
 
-            <div className="what-content-in">
-              <h3>DESIGN</h3>
-              <h4>UI/UX & Graphics</h4>
-              <p>
-                I design modern, intuitive, and visually powerful web interfaces, UI/UX systems, and branding graphics that captivate audiences and elevate identity.
-              </p>
-              <h5>Skillset & tools</h5>
-              <div className="what-content-flex">
-                <div className="what-tags">Figma</div>
-                <div className="what-tags">Adobe XD</div>
-                <div className="what-tags">Webflow</div>
-                <div className="what-tags">WordPress</div>
-                <div className="what-tags">Photoshop</div>
-                <div className="what-tags">Illustrator</div>
-                <div className="what-tags">Canva</div>
-                <div className="what-tags">Prototyping</div>
-                <div className="what-tags">Design Systems</div>
-              </div>
-              <div className="what-arrow"></div>
-            </div>
+const servicesData: ServiceItem[] = [
+  {
+    number: "01",
+    category: "Brand Identity & Art Direction",
+    headline: "Distinctive Visual Identities & Brand Systems",
+    summary:
+      "Crafting memorable brand identities from core concepts to comprehensive design systems. Built to establish immediate recognition, trust, and distinction across all mediums.",
+    deliverables: [
+      "Vector Logo Suite (Primary, Secondary, Monogram)",
+      "Comprehensive Brand Guidelines",
+      "Typography & Color Hierarchy Systems",
+      "Stationery & Collateral Design",
+      "Iconography & Vector Asset Libraries",
+    ],
+    tools: ["Adobe Illustrator", "Photoshop", "InDesign", "Vector Suite"],
+  },
+  {
+    number: "02",
+    category: "Packaging & Print Production",
+    headline: "Product Packaging & Editorial Artwork",
+    summary:
+      "Tangible design that commands shelf presence. Combining ergonomic label hierarchies, fine material considerations, and precision print-ready vector dielines.",
+    deliverables: [
+      "Consumer Product Packaging & Boxes",
+      "Label Architecture & Die-Cut Specs",
+      "Experimental Typographic Posters",
+      "Editorial Books & Publications",
+      "300 DPI Prepress & CMYK Separation",
+    ],
+    tools: ["Adobe Illustrator", "Photoshop", "Dieline Prepress", "Print Standards"],
+  },
+  {
+    number: "03",
+    category: "Digital Graphics & Campaigns",
+    headline: "Campaign Creative & Visual Storytelling",
+    summary:
+      "High-impact digital artwork engineered for multi-platform campaigns. Ensuring brand coherence across social media, digital advertising, and responsive web touchpoints.",
+    deliverables: [
+      "Campaign Art Direction & Key Visuals",
+      "Social Media Content Systems & Templates",
+      "Promotional Banners & Launch Creatives",
+      "Visual Storytelling Assets",
+      "UI/UX Concept & Design Systems",
+    ],
+    tools: ["Figma", "Canva Pro", "Photoshop", "Digital Layouts"],
+  },
+];
+
+const WhatIDo = () => {
+  const [activeService, setActiveService] = useState<number>(0);
+
+  return (
+    <section className="services-section" id="services" aria-label="Services & Capabilities">
+      <div className="section-container">
+        <div className="services-header-row">
+          <div>
+            <div className="section-eyebrow">Capabilities &bull; Studio Offerings</div>
+            <h2 className="section-title">
+              Disciplined craft for <span>bold</span> brands.
+            </h2>
           </div>
-          <div
-            className="what-content what-noTouch"
-            ref={(el) => setRef(el, 1)}
-          >
-            <div className="what-border1">
-              <svg height="100%">
-                <line
-                  x1="0"
-                  y1="100%"
-                  x2="100%"
-                  y2="100%"
-                  stroke="#cbd5e1"
-                  strokeWidth="2"
-                  strokeDasharray="6,6"
-                />
-              </svg>
-            </div>
-            <div className="what-corner"></div>
-            <div className="what-content-in">
-              <h3>DEVELOP</h3>
-              <h4>Web & Mobile Apps</h4>
-              <p>
-                I build responsive, enterprise-grade websites and scalable mobile applications with clean code, smooth animations, and solid integrations.
-              </p>
-              <h5>Skillset & tools</h5>
-              <div className="what-content-flex">
-                <div className="what-tags">React</div>
-                <div className="what-tags">React Native</div>
-                <div className="what-tags">Flutter</div>
-                <div className="what-tags">Firebase</div>
-                <div className="what-tags">JavaScript</div>
-                <div className="what-tags">Tailwind CSS</div>
-                <div className="what-tags">Framer Motion</div>
-                <div className="what-tags">HTML5</div>
-                <div className="what-tags">CSS3</div>
+          <p className="services-intro-text">
+            Every engagement is approached with strategic depth and uncompromising visual standards. From initial concept explorations to final vector delivery.
+          </p>
+        </div>
+
+        {/* Services Accordion / Grid */}
+        <div className="services-dossier-grid">
+          {servicesData.map((service, index) => {
+            const isOpen = activeService === index;
+            return (
+              <div
+                key={service.number}
+                className={`service-card ${isOpen ? "service-card--active" : ""}`}
+                onClick={() => setActiveService(index)}
+              >
+                <div className="service-card-top">
+                  <div className="service-num-wrap">
+                    <span className="service-num">{service.number}</span>
+                    <span className="service-category">{service.category}</span>
+                  </div>
+                  <button
+                    type="button"
+                    className="service-expand-btn"
+                    aria-label={`Toggle ${service.category}`}
+                  >
+                    <MdChevronRight className="expand-chevron" />
+                  </button>
+                </div>
+
+                <h3 className="service-headline">{service.headline}</h3>
+                <p className="service-summary">{service.summary}</p>
+
+                {/* Expanded Details */}
+                <div className="service-details-panel">
+                  <div className="service-deliverables">
+                    <h4 className="service-subhead">Core Deliverables</h4>
+                    <ul className="service-deliverables-list">
+                      {service.deliverables.map((item, idx) => (
+                        <li key={idx}>
+                          <span className="bullet-dash">&mdash;</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="service-tools-wrap">
+                    <h4 className="service-subhead">Tools &amp; Standards</h4>
+                    <div className="service-tools-tags">
+                      {service.tools.map((tool) => (
+                        <span key={tool} className="service-tool-tag">
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="service-card-footer">
+                  <a href="#contact" className="service-inquire-link">
+                    <span>Inquire for {service.category.split(" ")[0]}</span>
+                    <MdArrowOutward />
+                  </a>
+                </div>
               </div>
-              <div className="what-arrow"></div>
-            </div>
-          </div>
-          <div
-            className="what-content what-noTouch"
-            ref={(el) => setRef(el, 2)}
-          >
-            <div className="what-border1">
-              <svg height="100%">
-                <line
-                  x1="0"
-                  y1="100%"
-                  x2="100%"
-                  y2="100%"
-                  stroke="#cbd5e1"
-                  strokeWidth="2"
-                  strokeDasharray="6,6"
-                />
-              </svg>
-            </div>
-            <div className="what-corner"></div>
-            <div className="what-content-in">
-              <h3>MARKET</h3>
-              <h4>Growth & Strategy</h4>
-              <p>
-                I help brands scale their presence with data-driven marketing campaigns, SEO optimization, viral social media strategies, and persuasive copywriting.
-              </p>
-              <h5>Skillset & tools</h5>
-              <div className="what-content-flex">
-                <div className="what-tags">SEO</div>
-                <div className="what-tags">Meta Ads</div>
-                <div className="what-tags">Google Ads</div>
-                <div className="what-tags">Social Branding</div>
-                <div className="what-tags">Content Strategy</div>
-                <div className="what-tags">Reels Strategy</div>
-                <div className="what-tags">Copywriting</div>
-                <div className="what-tags">Storytelling</div>
-              </div>
-              <div className="what-arrow"></div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default WhatIDo;
-
-function handleClick(container: HTMLDivElement) {
-  container.classList.toggle("what-content-active");
-  container.classList.remove("what-sibling");
-  if (container.parentElement) {
-    const siblings = Array.from(container.parentElement.children);
-
-    siblings.forEach((sibling) => {
-      if (sibling !== container) {
-        sibling.classList.remove("what-content-active");
-        sibling.classList.toggle("what-sibling");
-      }
-    });
-  }
-}

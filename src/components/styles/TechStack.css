@@ -1,49 +1,140 @@
-.techstack {
-  padding: 80px 5vw;
+/* ==========================================================================
+   TECHSTACK / CAPABILITIES COMPONENT STYLES
+   ========================================================================== */
+
+.techstack-section {
+  padding: 120px 0;
+  background-color: var(--bg-alt);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  position: relative;
+}
+
+.techstack-header {
   text-align: center;
+  max-width: 680px;
+  margin: 0 auto 50px;
 }
 
-.techstack h2 {
-  font-size: clamp(2rem, 5vw, 4rem);
-  margin-bottom: 48px;
-  color: #0f172a;
-  font-weight: 600;
-}
-
-.tech-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-  max-width: 900px;
+.techstack-subtitle {
+  font-size: clamp(15px, 1.6vw, 18px);
+  color: var(--text-secondary);
+  line-height: 1.65;
   margin: 0 auto;
 }
 
-.tech-pill {
+/* Tabs */
+.tech-tabs-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 12px 24px;
-  border: 1.5px solid;
-  border-radius: 999px;
-  font-size: 0.95rem;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.tech-tab-btn {
+  padding: 8px 18px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-full);
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  cursor: default;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
 }
 
-.tech-pill:hover {
-  background: #f8fafc;
+.tech-tab-btn:hover {
+  background: var(--bg-main);
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+
+.tech-tab-btn.active {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: #ffffff;
+}
+
+/* Skills Grid */
+.skills-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.skill-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+}
+
+.skill-card:hover {
+  border-color: rgba(230, 57, 23, 0.3);
+  box-shadow: var(--shadow-md);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-.tech-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
+.skill-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.skill-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.skill-category-pill {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.skill-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.skill-card-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Responsive Grid */
+@media screen and (min-width: 640px) {
+  .skills-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .skills-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .skills-cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

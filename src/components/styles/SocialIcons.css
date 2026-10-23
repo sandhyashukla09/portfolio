@@ -1,248 +1,263 @@
-.icons-section {
+/* ==========================================================================
+   FLOATING UTILITIES (WHATSAPP & RESUME) STYLES
+   ========================================================================== */
+
+.floating-utilities {
   position: fixed;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 900;
   max-width: var(--cMaxWidth);
-  width: var(--cWidth);
-  bottom: 0;
-  z-index: 99;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 0 auto;
 }
-.social-icons {
-  position: absolute;
-  left: -20px;
-  bottom: 20px;
-  display: none;
-  flex-direction: column;
-  gap: 8px;
-  z-index: 999;
-  padding: 10px;
-}
-.social-icons:hover {
-  transition: 0.3s;
-  color: var(--backgroundColor);
-}
-.social-icons a:hover {
-  color: var(--backgroundColor);
-  /* transform: scale(1.2); */
-}
-.social-icons span {
-  width: 50px;
-  height: 50px;
+
+/* WhatsApp Float Wrap */
+.floating-whatsapp-wrap {
   position: relative;
-  display: flex;
-}
-.social-icons a {
-  --siLeft: 50%;
-  --siTop: 50%;
-  position: absolute;
-  left: var(--siLeft, 50%);
-  top: var(--siTop, 50%);
-  transform: translate(-50%, -50%);
-  display: flex;
-  font-size: 23px;
-  will-change: left, top;
-  transition: transform 0.3s ease-out;
-}
-.resume-button {
-  position: absolute;
-  z-index: 99;
-  display: flex;
-  gap: 5px;
-  bottom: 40px;
-  right: 0;
-  width: auto;
-  text-wrap: nowrap;
-  letter-spacing: 4px;
-  font-size: 15px;
-  line-height: 15px;
-  font-weight: 600;
-  color: #475569;
-  cursor: pointer;
-  transition: 0.3s;
-  transform-origin: left bottom;
-  transform: translateX(100%) rotateZ(-90deg);
-}
-.resume-button:hover {
-  color: var(--accentColor);
-}
-div.resume-button span {
-  color: #475569;
-  font-size: 17px;
-  margin-top: -1px;
+  pointer-events: auto;
   display: flex;
   align-items: center;
 }
-.check-line {
-  position: fixed;
-  top: 655px;
-  left: 0;
-  height: 1px;
-  background-color: #e2e8f0;
-  width: 100%;
-  z-index: 99999;
-}
-@media only screen and (min-width: 900px) {
-  .social-icons {
-    display: flex;
-    gap: 20px;
-  }
-  .social-icons a {
-    font-size: 28px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .resume-button {
-    transform: none;
-    font-size: 20px;
-    line-height: 20px;
-  }
-  div.resume-button span {
-    font-size: 23px;
-    margin-top: -1.5px;
-  }
-}
 
-/* Bobbing animation for the WhatsApp container */
-.social-icons span.whatsapp-container {
-  width: 50px;
-  height: 50px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: whatsappBob 3s ease-in-out infinite;
-}
-
-@keyframes whatsappBob {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-/* Pulsing concentric rings */
 .whatsapp-pulse-ring {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: -6px;
   border-radius: 50%;
-  background-color: rgba(37, 211, 102, 0.2);
+  background: rgba(37, 211, 102, 0.25);
+  animation: pulseWhatsappRing 2.4s infinite cubic-bezier(0.2, 0, 0, 1);
   pointer-events: none;
-  z-index: 1;
-  animation: whatsappPulse 3s cubic-bezier(0.25, 0, 0, 1) infinite;
 }
 
-.ring-1 {
-  animation-delay: 0s;
-}
-.ring-2 {
-  animation-delay: 1s;
-}
-.ring-3 {
-  animation-delay: 2s;
+@keyframes pulseWhatsappRing {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
 }
 
-@keyframes whatsappPulse {
-  0% {
-    transform: scale(0.95);
-    opacity: 0.9;
-  }
-  100% {
-    transform: scale(2.4);
-    opacity: 0;
-  }
+.floating-whatsapp-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #25d366;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.38);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+  z-index: 2;
 }
 
-/* Glassmorphic chat bubble */
-.whatsapp-chat-bubble {
+.floating-whatsapp-btn:hover {
+  transform: scale(1.1);
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-tooltip {
   position: absolute;
-  left: 65px;
-  top: 50%;
-  transform: translateY(-50%) scale(0.9);
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  left: 64px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
   padding: 6px 14px;
-  color: #0f172a;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 10;
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
   opacity: 0;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform-origin: left center;
-  animation: bubbleFadeIn 1s forwards;
-  animation-delay: 2.5s;
+  pointer-events: none;
+  transform: translateX(-8px);
+  transition: all var(--transition-fast);
 }
 
-@keyframes bubbleFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(-50%) scale(1);
-  }
+.floating-whatsapp-wrap:hover .whatsapp-tooltip {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-/* Active online indicator dot */
-.whatsapp-online-dot {
-  width: 7px;
-  height: 7px;
-  background-color: #25D366;
+.tooltip-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #25d366;
   border-radius: 50%;
-  display: inline-block;
-  box-shadow: 0 0 8px #25D366;
-  animation: onlineDotPulse 1.8s infinite;
 }
 
-@keyframes onlineDotPulse {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-    box-shadow: 0 0 12px #25D366;
-  }
-}
-
-/* Hover interactions */
-.social-icons span.whatsapp-container:hover .whatsapp-chat-bubble {
-  opacity: 1 !important;
-  transform: translateY(-50%) scale(1.08) !important;
-  background: #ffffff !important;
-  border-color: #25D366 !important;
-  box-shadow: 0 4px 25px rgba(37, 211, 102, 0.25) !important;
-  color: #0f172a !important;
-}
-
-.social-icons span.whatsapp-container:hover a.whatsapp-btn {
-  transform: translate(-50%, -50%) scale(1.2) !important;
-  background: #25D366 !important;
-  color: #ffffff !important;
-  filter: drop-shadow(0 4px 12px rgba(37, 211, 102, 0.6)) !important;
-}
-
-/* WhatsApp dynamic green button icon styling */
-.social-icons a.whatsapp-btn {
-  color: #25D366 !important;
-  background: #ffffff;
-  border: 1.5px solid rgba(37, 211, 102, 0.4);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex !important;
-  justify-content: center;
+/* Floating Resume Button */
+.floating-resume-btn {
+  pointer-events: auto;
+  display: inline-flex;
   align-items: center;
-  filter: drop-shadow(0 0 10px rgba(37, 211, 102, 0.4));
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-  z-index: 2;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: all var(--transition-fast);
+}
+
+.floating-resume-btn:hover {
+  background: var(--text-primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.resume-icon {
+  font-size: 15px;
+}
+
+/* Resume Modal */
+.resume-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.resume-modal-sheet {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  max-width: 580px;
+  width: 100%;
+  box-shadow: var(--shadow-hover);
+  overflow: hidden;
+}
+
+.resume-modal-header {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-alt);
+}
+
+.resume-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accentColor);
+  display: block;
+}
+
+.resume-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.resume-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.resume-close-btn:hover {
+  color: var(--accentColor);
+}
+
+.resume-modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.resume-bio-section h4 {
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.resume-bio-section p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.resume-section-block h5 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.resume-section-block p {
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.resume-section-block a {
+  color: var(--accentColor);
+  font-weight: 600;
+}
+
+.resume-modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-alt);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.resume-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--text-primary);
+  color: #ffffff;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background var(--transition-fast);
+}
+
+.resume-download-btn:hover {
+  background: var(--accentColor);
+  color: #ffffff;
+}
+
+/* Media Query */
+@media screen and (max-width: 600px) {
+  .floating-utilities {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+  }
 }
